@@ -56,21 +56,21 @@ const Dashboard = () => {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <SummaryCard
           title="Total Income"
-          value={`$${totalIncome.toLocaleString()}`}
+          value={`₹${totalIncome.toLocaleString()}`}
           icon={<DollarSign className="h-5 w-5 text-success" />}
           trend={+12.5}
           description="vs last month"
         />
         <SummaryCard
           title="Total Expense"
-          value={`$${totalExpense.toLocaleString()}`}
+          value={`₹${totalExpense.toLocaleString()}`}
           icon={<TrendingDown className="h-5 w-5 text-destructive" />}
           trend={-8.2}
           description="vs last month"
         />
         <SummaryCard
           title="Balance"
-          value={`$${balance.toLocaleString()}`}
+          value={`₹${balance.toLocaleString()}`}
           icon={<TrendingUp className="h-5 w-5 text-accent" />}
           trend={+15.3}
           description="vs last month"
@@ -79,7 +79,7 @@ const Dashboard = () => {
           title="Savings Goal"
           value={`${Math.round((currentSavings / savingsGoal) * 100)}%`}
           icon={<Target className="h-5 w-5 text-primary" />}
-          description={`$${currentSavings} of $${savingsGoal}`}
+          description={`₹${currentSavings} of ₹${savingsGoal}`}
         />
       </div>
 
@@ -96,17 +96,17 @@ const Dashboard = () => {
           <InsightCard
             type="success"
             title="Great job on food expenses!"
-            description="You've saved $120 on food this week compared to last week. Keep it up!"
+            description="You've saved ₹120 on food this week compared to last week. Keep it up!"
           />
           <InsightCard
             type="warning"
             title="Upcoming bill alert"
-            description="Your Netflix subscription ($15.99) is due in 3 days. Make sure you have sufficient balance."
+            description="Your Netflix subscription (₹199) is due in 3 days. Make sure you have sufficient balance."
           />
           <InsightCard
             type="info"
             title="Savings opportunity"
-            description="If you reduce shopping expenses by $50/week, you'll reach your savings goal 2 weeks earlier."
+            description="If you reduce shopping expenses by ₹500/week, you'll reach your savings goal 2 weeks earlier."
           />
         </CardContent>
       </Card>
@@ -126,6 +126,7 @@ const Dashboard = () => {
                 <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" />
                 <YAxis stroke="hsl(var(--muted-foreground))" />
                 <Tooltip
+                  formatter={(value: any) => [`₹${value}`, 'Amount']}
                   contentStyle={{
                     backgroundColor: "hsl(var(--card))",
                     border: "1px solid hsl(var(--border))",
@@ -168,6 +169,7 @@ const Dashboard = () => {
                   ))}
                 </Pie>
                 <Tooltip
+                  formatter={(value: any) => [`₹${value}`, 'Amount']}
                   contentStyle={{
                     backgroundColor: "hsl(var(--card))",
                     border: "1px solid hsl(var(--border))",
@@ -188,12 +190,12 @@ const Dashboard = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Current: ${currentSavings}</span>
-            <span className="text-muted-foreground">Goal: ${savingsGoal}</span>
+            <span className="text-muted-foreground">Current: ₹{currentSavings}</span>
+            <span className="text-muted-foreground">Goal: ₹{savingsGoal}</span>
           </div>
           <Progress value={(currentSavings / savingsGoal) * 100} className="h-3" />
           <p className="text-sm text-muted-foreground">
-            ${savingsGoal - currentSavings} remaining to reach your goal
+            ₹{savingsGoal - currentSavings} remaining to reach your goal
           </p>
         </CardContent>
       </Card>
